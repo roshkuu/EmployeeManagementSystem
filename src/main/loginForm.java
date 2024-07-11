@@ -225,8 +225,10 @@ public class loginForm extends javax.swing.JFrame {
                 rs = ps.executeQuery();
                 
                 if (rs.next()){
+                    String name = rs.getString(3);
+                    String des = rs.getString(5);
                     JOptionPane.showMessageDialog(null,"Login Successful!");
-                    MainMenu m = new MainMenu();
+                    mainForm m = new mainForm(name,des);
                     m.setVisible(true);
                     this.dispose();
                     
