@@ -5,23 +5,49 @@
 package main;
 
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import java.sql.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import static main.mainForm.DateValidator.validateDate;
 
 /**
  *
  * @author kuros
  */
 public class mainForm extends javax.swing.JFrame {
-
-    /**
-     * Creates new form mainForm
-     */
+    
+    public class DateValidator {
+        public static boolean validateDate(String date, String format) {
+            SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+            sdf.setLenient(false); // Set to false for strict validation
+            try {
+                sdf.parse(date);
+                return true;
+            } catch (ParseException e) {
+                return false;
+            }
+        }
+    }
+    
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/employee_database_mgt";
+    
+    Connection conn = null;
+    ResultSet rs = null;
+    PreparedStatement ps = null;
     
     int mouseX,mouseY;
     
-    public mainForm() {
+    public mainForm(Connection conn, String name, String des) {
         initComponents();
+        this.conn = conn; // Assign the passed connection
+    }
+    
+    public mainForm() {  // New constructor without arguments
+         initComponents();
+        // Set default values or leave them blank if not needed
     }
     
     public mainForm(String empName,String empDes) {
@@ -29,6 +55,7 @@ public class mainForm extends javax.swing.JFrame {
         lblEmpName.setText(empName.toUpperCase());
         lblEmpDesignation.setText(empDes.toUpperCase());
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -99,6 +126,92 @@ public class mainForm extends javax.swing.JFrame {
         jLabel30 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
+        p1_AddPane = new javax.swing.JPanel();
+        header = new javax.swing.JPanel();
+        jLabel36 = new javax.swing.JLabel();
+        jLabel38 = new javax.swing.JLabel();
+        txtPagibigNum = new javax.swing.JTextField();
+        jLabel41 = new javax.swing.JLabel();
+        jLabel42 = new javax.swing.JLabel();
+        jLabel43 = new javax.swing.JLabel();
+        jLabel44 = new javax.swing.JLabel();
+        jLabel45 = new javax.swing.JLabel();
+        jLabel46 = new javax.swing.JLabel();
+        jLabel47 = new javax.swing.JLabel();
+        jLabel49 = new javax.swing.JLabel();
+        jLabel50 = new javax.swing.JLabel();
+        jLabel51 = new javax.swing.JLabel();
+        jLabel52 = new javax.swing.JLabel();
+        jLabel53 = new javax.swing.JLabel();
+        jLabel54 = new javax.swing.JLabel();
+        jLabel55 = new javax.swing.JLabel();
+        jLabel56 = new javax.swing.JLabel();
+        jLabel57 = new javax.swing.JLabel();
+        jLabel58 = new javax.swing.JLabel();
+        txtClothingAllowance = new javax.swing.JTextField();
+        txtSupervisor = new javax.swing.JTextField();
+        txtFName = new javax.swing.JTextField();
+        txtBday = new javax.swing.JTextField();
+        txtAddress = new javax.swing.JTextField();
+        txtPhoneNum = new javax.swing.JTextField();
+        txtSSSNum = new javax.swing.JTextField();
+        txtPhilhealthNum = new javax.swing.JTextField();
+        txtTinNum = new javax.swing.JTextField();
+        txtStatus = new javax.swing.JComboBox<>();
+        txtLName = new javax.swing.JTextField();
+        txtEmpNum = new javax.swing.JTextField();
+        txtPosition = new javax.swing.JTextField();
+        txtSemiMonthlyRate = new javax.swing.JTextField();
+        txtBasicSalary = new javax.swing.JTextField();
+        txtPhoneAllowance = new javax.swing.JTextField();
+        txtRiceSubsidy = new javax.swing.JTextField();
+        jLabel59 = new javax.swing.JLabel();
+        txtHourlyRate = new javax.swing.JTextField();
+        btnGoBack = new javax.swing.JButton();
+        btnAddEmployee = new javax.swing.JButton();
+        p1_UpdatePane = new javax.swing.JPanel();
+        header1 = new javax.swing.JPanel();
+        jLabel48 = new javax.swing.JLabel();
+        jLabel60 = new javax.swing.JLabel();
+        txtPagibigNum1 = new javax.swing.JTextField();
+        jLabel61 = new javax.swing.JLabel();
+        jLabel62 = new javax.swing.JLabel();
+        jLabel63 = new javax.swing.JLabel();
+        jLabel64 = new javax.swing.JLabel();
+        jLabel65 = new javax.swing.JLabel();
+        jLabel66 = new javax.swing.JLabel();
+        jLabel67 = new javax.swing.JLabel();
+        jLabel68 = new javax.swing.JLabel();
+        jLabel69 = new javax.swing.JLabel();
+        jLabel70 = new javax.swing.JLabel();
+        jLabel71 = new javax.swing.JLabel();
+        jLabel72 = new javax.swing.JLabel();
+        jLabel73 = new javax.swing.JLabel();
+        jLabel74 = new javax.swing.JLabel();
+        jLabel75 = new javax.swing.JLabel();
+        jLabel76 = new javax.swing.JLabel();
+        jLabel77 = new javax.swing.JLabel();
+        txtClothingAllowance1 = new javax.swing.JTextField();
+        txtSupervisor1 = new javax.swing.JTextField();
+        txtFName1 = new javax.swing.JTextField();
+        txtBday1 = new javax.swing.JTextField();
+        txtAddress1 = new javax.swing.JTextField();
+        txtPhoneNum1 = new javax.swing.JTextField();
+        txtSSSNum1 = new javax.swing.JTextField();
+        txtPhilhealthNum1 = new javax.swing.JTextField();
+        txtTinNum1 = new javax.swing.JTextField();
+        txtLName1 = new javax.swing.JTextField();
+        txtSearch = new javax.swing.JTextField();
+        txtPosition1 = new javax.swing.JTextField();
+        txtStatus1 = new javax.swing.JTextField();
+        txtBasicSalary1 = new javax.swing.JTextField();
+        txtPhoneAllowance1 = new javax.swing.JTextField();
+        txtRiceSubsidy1 = new javax.swing.JTextField();
+        jLabel78 = new javax.swing.JLabel();
+        txtHourlyRate1 = new javax.swing.JTextField();
+        btnGoBack1 = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
+        txtSemiMonthlyRate1 = new javax.swing.JTextField();
         p2 = new javax.swing.JPanel();
         p3 = new javax.swing.JPanel();
         p4 = new javax.swing.JPanel();
@@ -393,11 +506,6 @@ public class mainForm extends javax.swing.JFrame {
                 headerPanelMouseDragged(evt);
             }
         });
-        headerPanel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                headerPanelMouseReleased(evt);
-            }
-        });
         headerPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/cancel_icon.png"))); // NOI18N
@@ -488,6 +596,11 @@ public class mainForm extends javax.swing.JFrame {
         addEmployee.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 3, 3, new java.awt.Color(153, 153, 153)));
         addEmployee.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         addEmployee.setPreferredSize(new java.awt.Dimension(170, 120));
+        addEmployee.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addEmployeeMouseClicked(evt);
+            }
+        });
 
         jLabel20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/add_icon.png"))); // NOI18N
 
@@ -562,6 +675,11 @@ public class mainForm extends javax.swing.JFrame {
         updateEmployee.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 3, 3, new java.awt.Color(153, 153, 153)));
         updateEmployee.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         updateEmployee.setPreferredSize(new java.awt.Dimension(170, 120));
+        updateEmployee.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                updateEmployeeMouseClicked(evt);
+            }
+        });
         updateEmployee.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/update_icon.png"))); // NOI18N
@@ -714,6 +832,411 @@ public class mainForm extends javax.swing.JFrame {
 
         centrePanel.add(p1, "card2");
 
+        p1_AddPane.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        header.setBackground(new java.awt.Color(0, 0, 104));
+        header.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel36.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel36.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel36.setText("Add Employee");
+        header.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 5, 130, -1));
+
+        p1_AddPane.add(header, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 769, -1));
+
+        jLabel38.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel38.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel38.setText("Employee Number :");
+        p1_AddPane.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
+
+        txtPagibigNum.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 2, 1, new java.awt.Color(153, 153, 153)));
+        p1_AddPane.add(txtPagibigNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 270, 150, -1));
+
+        jLabel41.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel41.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel41.setText("Last Name : ");
+        p1_AddPane.add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, -1, -1));
+
+        jLabel42.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel42.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel42.setText("First Name : ");
+        p1_AddPane.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 50, -1, -1));
+
+        jLabel43.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel43.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel43.setText("Birthday :");
+        p1_AddPane.add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
+
+        jLabel44.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel44.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel44.setText("Address : ");
+        p1_AddPane.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
+
+        jLabel45.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel45.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel45.setText("Phone Number : ");
+        p1_AddPane.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
+
+        jLabel46.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel46.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel46.setText("SSS Number :");
+        p1_AddPane.add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, -1, -1));
+
+        jLabel47.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel47.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel47.setText("Philhealth Number : ");
+        p1_AddPane.add(jLabel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, -1, -1));
+
+        jLabel49.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel49.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel49.setText("PAGIBIG Number : ");
+        p1_AddPane.add(jLabel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 250, -1, -1));
+
+        jLabel50.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel50.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel50.setText("Status :         ");
+        p1_AddPane.add(jLabel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, -1));
+
+        jLabel51.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel51.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel51.setText("Position :      ");
+        p1_AddPane.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 300, -1, -1));
+
+        jLabel52.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel52.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel52.setText("Immediate Supervisor : ");
+        p1_AddPane.add(jLabel52, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, -1, -1));
+
+        jLabel53.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel53.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel53.setText("Basic Salary : ");
+        p1_AddPane.add(jLabel53, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, -1, -1));
+
+        jLabel54.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel54.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel54.setText("Rice Subsidy : ");
+        p1_AddPane.add(jLabel54, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 450, -1, -1));
+
+        jLabel55.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel55.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel55.setText("Phone Allowance : ");
+        p1_AddPane.add(jLabel55, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 450, -1, -1));
+
+        jLabel56.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel56.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel56.setText("Clothing Allowance : ");
+        p1_AddPane.add(jLabel56, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 450, -1, -1));
+
+        jLabel57.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel57.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel57.setText("Semi-monthy Rate : ");
+        p1_AddPane.add(jLabel57, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 500, -1, -1));
+
+        jLabel58.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel58.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel58.setText("TIN Number :");
+        p1_AddPane.add(jLabel58, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 250, -1, -1));
+
+        txtClothingAllowance.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 2, 1, new java.awt.Color(153, 153, 153)));
+        p1_AddPane.add(txtClothingAllowance, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 470, 104, -1));
+
+        txtSupervisor.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 2, 1, new java.awt.Color(153, 153, 153)));
+        p1_AddPane.add(txtSupervisor, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 370, 320, -1));
+
+        txtFName.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 2, 1, new java.awt.Color(153, 153, 153)));
+        p1_AddPane.add(txtFName, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, 140, -1));
+
+        txtBday.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 2, 1, new java.awt.Color(153, 153, 153)));
+        p1_AddPane.add(txtBday, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 104, -1));
+
+        txtAddress.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 2, 1, new java.awt.Color(153, 153, 153)));
+        p1_AddPane.add(txtAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 710, -1));
+
+        txtPhoneNum.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 2, 1, new java.awt.Color(153, 153, 153)));
+        p1_AddPane.add(txtPhoneNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 150, -1));
+
+        txtSSSNum.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 2, 1, new java.awt.Color(153, 153, 153)));
+        p1_AddPane.add(txtSSSNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 150, -1));
+
+        txtPhilhealthNum.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 2, 1, new java.awt.Color(153, 153, 153)));
+        p1_AddPane.add(txtPhilhealthNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 270, 150, -1));
+
+        txtTinNum.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 2, 1, new java.awt.Color(153, 153, 153)));
+        p1_AddPane.add(txtTinNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 270, 150, -1));
+
+        txtStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Regular", "Probationary" }));
+        txtStatus.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 2, 1, new java.awt.Color(153, 153, 153)));
+        p1_AddPane.add(txtStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 100, -1));
+
+        txtLName.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 2, 1, new java.awt.Color(153, 153, 153)));
+        p1_AddPane.add(txtLName, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 140, -1));
+
+        txtEmpNum.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 2, 1, new java.awt.Color(153, 153, 153)));
+        p1_AddPane.add(txtEmpNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 104, -1));
+
+        txtPosition.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 2, 1, new java.awt.Color(153, 153, 153)));
+        p1_AddPane.add(txtPosition, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, 200, -1));
+
+        txtSemiMonthlyRate.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 2, 1, new java.awt.Color(153, 153, 153)));
+        p1_AddPane.add(txtSemiMonthlyRate, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 520, 104, -1));
+
+        txtBasicSalary.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 2, 1, new java.awt.Color(153, 153, 153)));
+        p1_AddPane.add(txtBasicSalary, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 420, 104, -1));
+
+        txtPhoneAllowance.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 2, 1, new java.awt.Color(153, 153, 153)));
+        p1_AddPane.add(txtPhoneAllowance, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 470, 104, -1));
+
+        txtRiceSubsidy.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 2, 1, new java.awt.Color(153, 153, 153)));
+        p1_AddPane.add(txtRiceSubsidy, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 470, 104, -1));
+
+        jLabel59.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel59.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel59.setText("Hourly Rate :");
+        p1_AddPane.add(jLabel59, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 500, -1, -1));
+
+        txtHourlyRate.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 2, 1, new java.awt.Color(153, 153, 153)));
+        p1_AddPane.add(txtHourlyRate, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 520, 104, -1));
+
+        btnGoBack.setBackground(new java.awt.Color(255, 0, 51));
+        btnGoBack.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnGoBack.setForeground(new java.awt.Color(255, 255, 255));
+        btnGoBack.setText("Go Back");
+        btnGoBack.setBorderPainted(false);
+        btnGoBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnGoBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGoBackActionPerformed(evt);
+            }
+        });
+        p1_AddPane.add(btnGoBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 500, 140, 50));
+
+        btnAddEmployee.setBackground(new java.awt.Color(0, 0, 102));
+        btnAddEmployee.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnAddEmployee.setForeground(new java.awt.Color(255, 255, 255));
+        btnAddEmployee.setText("Add Employee");
+        btnAddEmployee.setBorderPainted(false);
+        btnAddEmployee.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAddEmployee.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddEmployeeActionPerformed(evt);
+            }
+        });
+        p1_AddPane.add(btnAddEmployee, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 500, 140, 50));
+
+        centrePanel.add(p1_AddPane, "card7");
+
+        p1_UpdatePane.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        header1.setBackground(new java.awt.Color(0, 0, 104));
+        header1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel48.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel48.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel48.setText("Update Employee");
+        header1.add(jLabel48, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 5, 150, -1));
+
+        p1_UpdatePane.add(header1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 769, -1));
+
+        jLabel60.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel60.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel60.setText("Employee Number :");
+        p1_UpdatePane.add(jLabel60, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
+
+        txtPagibigNum1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 2, 1, new java.awt.Color(153, 153, 153)));
+        p1_UpdatePane.add(txtPagibigNum1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 270, 150, -1));
+
+        jLabel61.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel61.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel61.setText("Last Name : ");
+        p1_UpdatePane.add(jLabel61, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, -1, -1));
+
+        jLabel62.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel62.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel62.setText("First Name : ");
+        p1_UpdatePane.add(jLabel62, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 100, -1, -1));
+
+        jLabel63.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel63.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel63.setText("Birthday :");
+        p1_UpdatePane.add(jLabel63, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
+
+        jLabel64.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel64.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel64.setText("Address : ");
+        p1_UpdatePane.add(jLabel64, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
+
+        jLabel65.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel65.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel65.setText("Phone Number : ");
+        p1_UpdatePane.add(jLabel65, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
+
+        jLabel66.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel66.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel66.setText("SSS Number :");
+        p1_UpdatePane.add(jLabel66, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, -1, -1));
+
+        jLabel67.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel67.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel67.setText("Philhealth Number : ");
+        p1_UpdatePane.add(jLabel67, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, -1, -1));
+
+        jLabel68.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel68.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel68.setText("PAGIBIG Number : ");
+        p1_UpdatePane.add(jLabel68, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 250, -1, -1));
+
+        jLabel69.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel69.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel69.setText("Status :         ");
+        p1_UpdatePane.add(jLabel69, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, -1));
+
+        jLabel70.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel70.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel70.setText("Position :      ");
+        p1_UpdatePane.add(jLabel70, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 300, -1, -1));
+
+        jLabel71.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel71.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel71.setText("Immediate Supervisor : ");
+        p1_UpdatePane.add(jLabel71, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, -1, -1));
+
+        jLabel72.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel72.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel72.setText("Basic Salary : ");
+        p1_UpdatePane.add(jLabel72, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, -1, -1));
+
+        jLabel73.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel73.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel73.setText("Rice Subsidy : ");
+        p1_UpdatePane.add(jLabel73, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 450, -1, -1));
+
+        jLabel74.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel74.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel74.setText("Phone Allowance : ");
+        p1_UpdatePane.add(jLabel74, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 450, -1, -1));
+
+        jLabel75.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel75.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel75.setText("Clothing Allowance : ");
+        p1_UpdatePane.add(jLabel75, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 450, -1, -1));
+
+        jLabel76.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel76.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel76.setText("Gross Semi-monthy Rate : ");
+        p1_UpdatePane.add(jLabel76, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 500, -1, -1));
+
+        jLabel77.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel77.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel77.setText("TIN Number :");
+        p1_UpdatePane.add(jLabel77, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 250, -1, -1));
+
+        txtClothingAllowance1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 2, 1, new java.awt.Color(153, 153, 153)));
+        p1_UpdatePane.add(txtClothingAllowance1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 470, 104, -1));
+
+        txtSupervisor1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 2, 1, new java.awt.Color(153, 153, 153)));
+        p1_UpdatePane.add(txtSupervisor1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 370, 320, -1));
+
+        txtFName1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 2, 1, new java.awt.Color(153, 153, 153)));
+        p1_UpdatePane.add(txtFName1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 120, 140, -1));
+
+        txtBday1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 2, 1, new java.awt.Color(153, 153, 153)));
+        p1_UpdatePane.add(txtBday1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 104, -1));
+
+        txtAddress1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 2, 1, new java.awt.Color(153, 153, 153)));
+        p1_UpdatePane.add(txtAddress1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 710, -1));
+
+        txtPhoneNum1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 2, 1, new java.awt.Color(153, 153, 153)));
+        p1_UpdatePane.add(txtPhoneNum1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 150, -1));
+
+        txtSSSNum1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 2, 1, new java.awt.Color(153, 153, 153)));
+        p1_UpdatePane.add(txtSSSNum1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 150, -1));
+
+        txtPhilhealthNum1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 2, 1, new java.awt.Color(153, 153, 153)));
+        p1_UpdatePane.add(txtPhilhealthNum1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 270, 150, -1));
+
+        txtTinNum1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 2, 1, new java.awt.Color(153, 153, 153)));
+        p1_UpdatePane.add(txtTinNum1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 270, 150, -1));
+
+        txtLName1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 2, 1, new java.awt.Color(153, 153, 153)));
+        p1_UpdatePane.add(txtLName1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, 140, -1));
+
+        txtSearch.setForeground(new java.awt.Color(153, 153, 153));
+        txtSearch.setText("            Enter Employee Number to Search");
+        txtSearch.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 2, 1, new java.awt.Color(153, 153, 153)));
+        txtSearch.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtSearchFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtSearchFocusLost(evt);
+            }
+        });
+        txtSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSearchActionPerformed(evt);
+            }
+        });
+        txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtSearchKeyPressed(evt);
+            }
+        });
+        p1_UpdatePane.add(txtSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 270, -1));
+
+        txtPosition1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 2, 1, new java.awt.Color(153, 153, 153)));
+        p1_UpdatePane.add(txtPosition1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, 200, -1));
+
+        txtStatus1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 2, 1, new java.awt.Color(153, 153, 153)));
+        p1_UpdatePane.add(txtStatus1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 100, -1));
+
+        txtBasicSalary1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 2, 1, new java.awt.Color(153, 153, 153)));
+        p1_UpdatePane.add(txtBasicSalary1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 420, 104, -1));
+
+        txtPhoneAllowance1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 2, 1, new java.awt.Color(153, 153, 153)));
+        p1_UpdatePane.add(txtPhoneAllowance1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 470, 104, -1));
+
+        txtRiceSubsidy1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 2, 1, new java.awt.Color(153, 153, 153)));
+        p1_UpdatePane.add(txtRiceSubsidy1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 470, 104, -1));
+
+        jLabel78.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel78.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel78.setText("Hourly Rate :");
+        p1_UpdatePane.add(jLabel78, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 500, -1, -1));
+
+        txtHourlyRate1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 2, 1, new java.awt.Color(153, 153, 153)));
+        p1_UpdatePane.add(txtHourlyRate1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 520, 104, -1));
+
+        btnGoBack1.setBackground(new java.awt.Color(255, 0, 51));
+        btnGoBack1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnGoBack1.setForeground(new java.awt.Color(255, 255, 255));
+        btnGoBack1.setText("Go Back");
+        btnGoBack1.setBorderPainted(false);
+        btnGoBack1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnGoBack1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGoBack1ActionPerformed(evt);
+            }
+        });
+        p1_UpdatePane.add(btnGoBack1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 500, 140, 50));
+
+        btnUpdate.setBackground(new java.awt.Color(0, 0, 102));
+        btnUpdate.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnUpdate.setForeground(new java.awt.Color(255, 255, 255));
+        btnUpdate.setText("Update Employee");
+        btnUpdate.setBorderPainted(false);
+        btnUpdate.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
+        p1_UpdatePane.add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 500, 160, 50));
+
+        txtSemiMonthlyRate1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 2, 1, new java.awt.Color(153, 153, 153)));
+        p1_UpdatePane.add(txtSemiMonthlyRate1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 520, 140, -1));
+
+        centrePanel.add(p1_UpdatePane, "card7");
+
         javax.swing.GroupLayout p2Layout = new javax.swing.GroupLayout(p2);
         p2.setLayout(p2Layout);
         p2Layout.setHorizontalGroup(
@@ -783,6 +1306,51 @@ public class mainForm extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    void reset(){
+        txtEmpNum.setText("");
+        txtLName.setText("");
+        txtFName.setText("");
+        txtBday.setText("");
+        txtAddress.setText("");
+        txtPhoneNum.setText("");
+        txtSSSNum.setText("");
+        txtPhilhealthNum.setText("");
+        txtTinNum.setText("");
+        txtPagibigNum.setText("");
+        txtStatus.setSelectedIndex(0);
+        txtPosition.setText("");
+        txtSupervisor.setText("");
+        txtBasicSalary.setText("");
+        txtRiceSubsidy.setText("");
+        txtPhoneAllowance.setText("");
+        txtClothingAllowance.setText("");
+        txtSemiMonthlyRate.setText("");
+        txtHourlyRate.setText("");    
+        
+        //reset for update pane
+        
+        txtSearch.setText("            Enter Employee Number to Search");
+        txtLName1.setText("");
+        txtFName1.setText("");
+        txtBday1.setText("");
+        txtAddress1.setText("");
+        txtPhoneNum1.setText("");
+        txtSSSNum1.setText("");
+        txtPhilhealthNum1.setText("");
+        txtTinNum1.setText("");
+        txtPagibigNum1.setText("");
+        txtStatus1.setText("");
+        txtPosition1.setText("");
+        txtSupervisor1.setText("");
+        txtBasicSalary1.setText("");
+        txtRiceSubsidy1.setText("");
+        txtPhoneAllowance1.setText("");
+        txtClothingAllowance1.setText("");
+        txtSemiMonthlyRate1.setText("");
+        txtHourlyRate1.setText("");
+        
+    }
+    
     private void onClick(JPanel panel){
         panel.setBackground(new Color(0,153,204));
     }
@@ -904,11 +1472,300 @@ public class mainForm extends javax.swing.JFrame {
         setLocation(x - mouseX,y - mouseY);
     }//GEN-LAST:event_headerPanelMouseDragged
 
-    private void headerPanelMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_headerPanelMouseReleased
+    private void addEmployeeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addEmployeeMouseClicked
         // TODO add your handling code here:
-        mouseX = evt.getX();
-        mouseY = evt.getY();
-    }//GEN-LAST:event_headerPanelMouseReleased
+        p1_AddPane.setVisible(true);
+        p1.setVisible(false);
+        p2.setVisible(false);
+        p3.setVisible(false);
+        p4.setVisible(false);
+        p5.setVisible(false);
+    }//GEN-LAST:event_addEmployeeMouseClicked
+
+    private void btnAddEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddEmployeeActionPerformed
+        // TODO add your handling code here:
+        int p = JOptionPane.showConfirmDialog(null,"Are you sure you want to add this record?","Add Record",JOptionPane.YES_NO_OPTION);
+        if (p == 0) {
+            try {
+                String sql = "INSERT INTO `motorph_employee_data___employee_details`(`Employee #`, `Last Name`, `First Name`, `Birthday`, `Address`, `Phone Number`, `SSS #`, `Philhealth #`, `TIN #`, `Pag-ibig #`, `Status`, `Position`, `Immediate Supervisor`, `Basic Salary`, `Rice Subsidy`, `Phone Allowance`, `Clothing Allowance`, `Gross Semi-monthly Rate`, `Hourly Rate`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                ps = conn.prepareStatement(sql);
+                
+                ps.setString(1,txtEmpNum.getText());
+                ps.setString(2,txtLName.getText());
+                ps.setString(3,txtFName.getText());
+                String birthday = txtBday.getText().trim();
+                if (validateDate(birthday, "MM/DD/YYYY")) { // Adjust the date format pattern here
+                    ps.setString(4, birthday);
+                } else {
+                    ps.setString(4, ""); // Set an empty string as default
+                    JOptionPane.showMessageDialog(null, "Invalid birthday format. Please use MM/DD/YYYY");
+                }
+                ps.setString(5,txtAddress.getText());
+                ps.setString(6,txtPhoneNum.getText());
+                ps.setString(7,txtSSSNum.getText());
+                ps.setString(8,txtPhilhealthNum.getText());
+                ps.setString(9,txtTinNum.getText());
+                ps.setString(10,txtPagibigNum.getText());
+                ps.setString(11,txtStatus.getSelectedItem().toString());
+                ps.setString(12,txtPosition.getText());
+                ps.setString(13,txtSupervisor.getText());
+                ps.setString(14,txtBasicSalary.getText());
+                ps.setString(15,txtRiceSubsidy.getText());
+                ps.setString(16,txtPhoneAllowance.getText());
+                ps.setString(17,txtClothingAllowance.getText());
+                ps.setString(18,txtSemiMonthlyRate.getText());
+                ps.setString(19,txtHourlyRate.getText());
+                
+                ps.execute();
+                JOptionPane.showMessageDialog(null,"Data Stored Successfully!");
+                reset();
+                
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null,ex);
+            }
+        }
+    }//GEN-LAST:event_btnAddEmployeeActionPerformed
+
+    private void btnGoBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGoBackActionPerformed
+        // TODO add your handling code here:
+        p1_AddPane.setVisible(false);
+        p1.setVisible(true);
+        p2.setVisible(false);
+        p3.setVisible(false);
+        p4.setVisible(false);
+        p5.setVisible(false);
+        
+        reset();
+    }//GEN-LAST:event_btnGoBackActionPerformed
+
+    private void btnGoBack1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGoBack1ActionPerformed
+        // TODO add your handling code here:
+        p1.setVisible(true);
+        p1_AddPane.setVisible(false);
+        p1_UpdatePane.setVisible(false);
+        p1.setVisible(false);
+        p1.setVisible(false);
+        p1.setVisible(false);
+        p1.setVisible(false);
+    }//GEN-LAST:event_btnGoBack1ActionPerformed
+
+    private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
+        // TODO add your handling code here:
+        if (txtSearch.getText().trim().equals("Enter Employee Id to Search")){
+            txtSearch.setText("");
+            txtSearch.setForeground(new Color(153,153,153));      
+    }
+        txtSearch.setForeground(Color.BLACK);
+    }//GEN-LAST:event_txtSearchActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        // TODO add your handling code here:
+        String value1 = txtSearch.getText();
+        String value2 = txtLName1.getText();
+        String value3 = txtFName1.getText();
+        String value4 = txtBday1.getText();
+        String value5 = txtAddress1.getText();
+        String value6 = txtPhoneNum1.getText();
+        String value7 = txtSSSNum1.getText();
+        String value8 = txtPhilhealthNum1.getText();
+        String value9 = txtTinNum1.getText();
+        String value10 = txtPagibigNum1.getText();
+        String value11 = txtStatus1.getText();
+        String value12 = txtPosition1.getText();
+        String value13 = txtSupervisor1.getText();
+        String value14 = txtBasicSalary1.getText();
+        String value15 = txtRiceSubsidy1.getText();
+        String value16 = txtPhoneAllowance1.getText();
+        String value17 = txtClothingAllowance1.getText();
+        String value18 = txtSemiMonthlyRate1.getText();
+        String value19 = txtHourlyRate1.getText();
+         
+        int p = JOptionPane.showConfirmDialog(null,"Are you sure to update this employee record?", "Update Record",JOptionPane.YES_NO_OPTION);
+        if (p == 0){
+            try {
+                String sql = "UPDATE `motorph_employee_data___employee_details` SET `EmployeeNum`='"+value1+"',`LastName`='"+value2+"',`FirstName`='"+value3+"',`Birthday`='"+value4+"',`Address`='"+value5+"',`PhoneNumber`='"+value6+"',`SSS`='"+value7+"',`Philhealth`='"+value8+"',`TIN`='"+value9+"',`Pagibig`='"+value10+"',`Status`='"+value11+"',`Position`='"+value12+"',`ImmediateSupervisor`='"+value13+"',`BasicSalary`='"+value14+"',`RiceSubsidy`='"+value15+"',`PhoneAllowance`='"+value16+"',`ClothingAllowance`='"+value17+"',`GrossSemiMonthlyRate`='"+value18+"',`HourlyRate`='"+value19+"' WHERE`EmployeeNum`='"+value1+"'";
+                ps = conn.prepareStatement(sql);
+                ps.execute();
+                JOptionPane.showMessageDialog(null,"Data updated successfully!");
+                reset();
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null,ex);
+            }
+        }
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void txtSearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            try {
+                String sql = "SELECT `EmployeeNum`, `LastName`, `FirstName`, `Birthday`, `Address`, `PhoneNumber`, `SSS`, `Philhealth`, `TIN`, `Pagibig`, `Status`, `Position`, `ImmediateSupervisor`, `BasicSalary`, `RiceSubsidy`, `PhoneAllowance`, `ClothingAllowance`, `GrossSemiMonthlyRate`, `HourlyRate` FROM `motorph_employee_data___employee_details` WHERE EmployeeNum = ?";
+                ps = conn.prepareStatement(sql);
+                ps.setString(1,txtSearch.getText());
+
+                // Execute the query and get the results
+                rs = ps.executeQuery();
+
+                if (rs.next()) {
+                    // Retrieve data based on actual column names and data types
+                    String lastName = rs.getString("LastName");
+                    String firstName = rs.getString("FirstName");
+                    String birthday = rs.getString("Birthday");  // Assuming stored as String (verify)
+                    String address = rs.getString("Address");
+                    String phoneNumber = rs.getString("PhoneNumber");
+                    String sss = rs.getString("SSS");
+                    String tin = rs.getString("TIN");
+                    String status = rs.getString("Status");
+                    String position = rs.getString("Position");
+                    String immediateSupervisor = rs.getString("ImmediateSupervisor");
+                    
+                    long philhealth;
+                        try {
+                          philhealth = rs.getLong("Philhealth");
+                        } catch (SQLException e) {
+                          // Handle potential exception if data cannot be converted to long (e.g., invalid data)
+                          philhealth = 0; // Or set a default value
+                        }
+        
+                    // Handle data type conversions
+                    String pagibig = rs.getString("Pagibig");
+                    try {    
+                      txtPagibigNum1.setText(pagibig);
+                    } catch (Exception e) {
+                      // Handle potential SQLException (e.g., if the value cannot be converted to String)
+                    }
+
+                    String basicSalary = rs.getString("BasicSalary");
+                    if (basicSalary != null) {  // Check for null values
+                      try {
+                        double basicSalaryDouble = Double.parseDouble(basicSalary);
+                        txtBasicSalary1.setText(String.valueOf(basicSalaryDouble));
+                      } catch (NumberFormatException e) {
+                        // Handle invalid basic salary format (e.g., display error message)
+                      }
+                    }
+
+                    // Assuming RiceSubsidy is int(6)
+                    double riceSubsidy;
+                    try {
+                      riceSubsidy = rs.getDouble("RiceSubsidy");
+                      txtRiceSubsidy1.setText(String.valueOf(riceSubsidy));
+                    } catch (SQLException e) {
+                      // Handle potential exception
+                      riceSubsidy = 0;
+                    }
+
+                    double phoneAllowance;  // Assuming int for int(5)
+                    try {
+                      phoneAllowance = rs.getDouble("PhoneAllowance");
+                      txtPhoneAllowance1.setText(String.valueOf(phoneAllowance));
+                    } catch (SQLException e) {
+                      // Handle potential SQLException (e.g., if the value cannot be converted to int)
+                    }
+
+                    double clothingAllowance;  // Assuming int for int(5)
+                    try {
+                      clothingAllowance = rs.getDouble("ClothingAllowance");
+                      txtClothingAllowance1.setText(String.valueOf(clothingAllowance));
+                    } catch (SQLException e) {
+                      // Handle potential SQLException (e.g., if the value cannot be converted to int)
+                    }
+
+                    double grossSemiMonthlyRate;  // Assuming int for int(6)
+                    try {
+                      grossSemiMonthlyRate = rs.getDouble("GrossSemiMonthlyRate");
+                      txtSemiMonthlyRate1.setText(String.valueOf(grossSemiMonthlyRate));
+                    } catch (SQLException e) {
+                      // Handle potential SQLException (e.g., if the value cannot be converted to int)
+                    }
+
+                    double hourlyRate = rs.getDouble("HourlyRate");
+                    txtHourlyRate1.setText(String.valueOf(hourlyRate));
+
+                    // Update your form UI elements with retrieved data
+                    txtLName1.setText(lastName);
+                    txtFName1.setText(firstName);
+                    txtBday1.setText(birthday);
+                    txtAddress1.setText(address);
+                    txtPhoneNum1.setText(phoneNumber);
+                    txtSSSNum1.setText(sss);
+                    txtPhilhealthNum1.setText(String.valueOf(philhealth));  // Convert long to String
+                    txtTinNum1.setText(tin);
+                    txtStatus1.setText(status);
+                    txtPosition1.setText(position);
+                    txtSupervisor1.setText(immediateSupervisor);
+
+        
+                } else {
+                  JOptionPane.showMessageDialog(this, "Employee not found!");
+                }
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(this, "Error searching employee: " + e.getMessage());
+      
+    } finally {
+      if (rs != null) {
+          try {
+              rs.close();
+          } catch (Exception ex) {
+              JOptionPane.showMessageDialog(null,ex);
+          }
+      }
+      if (ps != null) {
+          try {
+              ps.close();
+          } catch (Exception ex) {
+              JOptionPane.showMessageDialog(null,ex);
+          }
+      }
+    }
+  }
+    }//GEN-LAST:event_txtSearchKeyPressed
+
+    private void updateEmployeeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateEmployeeMouseClicked
+        // TODO add your handling code here:
+        p1.setVisible(false);
+        p1_AddPane.setVisible(false);
+        p1_UpdatePane.setVisible(true);
+        p2.setVisible(false);
+        p3.setVisible(false);
+        p4.setVisible(false);
+        p5.setVisible(false);
+        
+    }//GEN-LAST:event_updateEmployeeMouseClicked
+
+    private void txtSearchFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSearchFocusGained
+        // TODO add your handling code here:
+        if (txtSearch.getText().trim().equals("Enter Employee Id to Search")){
+            txtSearch.setText("");
+            txtSearch.setForeground(new Color(153,153,153));      
+    }
+        txtSearch.setForeground(Color.BLACK);     
+    }//GEN-LAST:event_txtSearchFocusGained
+
+    private void txtSearchFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSearchFocusLost
+        // TODO add your handling code here:
+        if (txtSearch.getText().trim().equals("")){
+            txtSearch.setText("            Enter Employee Number to Search");
+            txtLName1.setText("");
+            txtFName1.setText("");
+            txtBday1.setText("");
+            txtAddress1.setText("");
+            txtPhoneNum1.setText("");
+            txtSSSNum1.setText("");
+            txtPhilhealthNum1.setText("");
+            txtTinNum1.setText("");
+            txtPagibigNum1.setText("");
+            txtStatus1.setText("");
+            txtPosition1.setText("");
+            txtSupervisor1.setText("");
+            txtBasicSalary1.setText("");
+            txtRiceSubsidy1.setText("");
+            txtPhoneAllowance1.setText("");
+            txtClothingAllowance1.setText("");
+            txtSemiMonthlyRate1.setText("");
+            txtHourlyRate1.setText("");
+        }        
+  
+    }//GEN-LAST:event_txtSearchFocusLost
 
     /**
      * @param args the command line arguments
@@ -954,11 +1811,17 @@ public class mainForm extends javax.swing.JFrame {
     private javax.swing.JPanel btn4;
     private javax.swing.JPanel btn5;
     private javax.swing.JPanel btn6;
+    private javax.swing.JButton btnAddEmployee;
+    private javax.swing.JButton btnGoBack;
+    private javax.swing.JButton btnGoBack1;
+    private javax.swing.JButton btnUpdate;
     private javax.swing.JPanel calculateSalary;
     private javax.swing.JPanel centrePanel;
     private javax.swing.JPanel deleteEmployee;
     private javax.swing.JPanel generateReceipt;
     private javax.swing.JPanel generateSalary;
+    private javax.swing.JPanel header;
+    private javax.swing.JPanel header1;
     private javax.swing.JPanel headerPanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -989,13 +1852,53 @@ public class mainForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel41;
+    private javax.swing.JLabel jLabel42;
+    private javax.swing.JLabel jLabel43;
+    private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel45;
+    private javax.swing.JLabel jLabel46;
+    private javax.swing.JLabel jLabel47;
+    private javax.swing.JLabel jLabel48;
+    private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel50;
+    private javax.swing.JLabel jLabel51;
+    private javax.swing.JLabel jLabel52;
+    private javax.swing.JLabel jLabel53;
+    private javax.swing.JLabel jLabel54;
+    private javax.swing.JLabel jLabel55;
+    private javax.swing.JLabel jLabel56;
+    private javax.swing.JLabel jLabel57;
+    private javax.swing.JLabel jLabel58;
+    private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel60;
+    private javax.swing.JLabel jLabel61;
+    private javax.swing.JLabel jLabel62;
+    private javax.swing.JLabel jLabel63;
+    private javax.swing.JLabel jLabel64;
+    private javax.swing.JLabel jLabel65;
+    private javax.swing.JLabel jLabel66;
+    private javax.swing.JLabel jLabel67;
+    private javax.swing.JLabel jLabel68;
+    private javax.swing.JLabel jLabel69;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel70;
+    private javax.swing.JLabel jLabel71;
+    private javax.swing.JLabel jLabel72;
+    private javax.swing.JLabel jLabel73;
+    private javax.swing.JLabel jLabel74;
+    private javax.swing.JLabel jLabel75;
+    private javax.swing.JLabel jLabel76;
+    private javax.swing.JLabel jLabel77;
+    private javax.swing.JLabel jLabel78;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JSeparator jSeparator1;
@@ -1003,12 +1906,52 @@ public class mainForm extends javax.swing.JFrame {
     private javax.swing.JLabel lblEmpName;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JPanel p1;
+    private javax.swing.JPanel p1_AddPane;
+    private javax.swing.JPanel p1_UpdatePane;
     private javax.swing.JPanel p2;
     private javax.swing.JPanel p3;
     private javax.swing.JPanel p4;
     private javax.swing.JPanel p5;
     private javax.swing.JPanel reportEmployee;
     private javax.swing.JPanel sidePanel;
+    private javax.swing.JTextField txtAddress;
+    private javax.swing.JTextField txtAddress1;
+    private javax.swing.JTextField txtBasicSalary;
+    private javax.swing.JTextField txtBasicSalary1;
+    private javax.swing.JTextField txtBday;
+    private javax.swing.JTextField txtBday1;
+    private javax.swing.JTextField txtClothingAllowance;
+    private javax.swing.JTextField txtClothingAllowance1;
+    private javax.swing.JTextField txtEmpNum;
+    private javax.swing.JTextField txtFName;
+    private javax.swing.JTextField txtFName1;
+    private javax.swing.JTextField txtHourlyRate;
+    private javax.swing.JTextField txtHourlyRate1;
+    private javax.swing.JTextField txtLName;
+    private javax.swing.JTextField txtLName1;
+    private javax.swing.JTextField txtPagibigNum;
+    private javax.swing.JTextField txtPagibigNum1;
+    private javax.swing.JTextField txtPhilhealthNum;
+    private javax.swing.JTextField txtPhilhealthNum1;
+    private javax.swing.JTextField txtPhoneAllowance;
+    private javax.swing.JTextField txtPhoneAllowance1;
+    private javax.swing.JTextField txtPhoneNum;
+    private javax.swing.JTextField txtPhoneNum1;
+    private javax.swing.JTextField txtPosition;
+    private javax.swing.JTextField txtPosition1;
+    private javax.swing.JTextField txtRiceSubsidy;
+    private javax.swing.JTextField txtRiceSubsidy1;
+    private javax.swing.JTextField txtSSSNum;
+    private javax.swing.JTextField txtSSSNum1;
+    private javax.swing.JTextField txtSearch;
+    private javax.swing.JTextField txtSemiMonthlyRate;
+    private javax.swing.JTextField txtSemiMonthlyRate1;
+    private javax.swing.JComboBox<String> txtStatus;
+    private javax.swing.JTextField txtStatus1;
+    private javax.swing.JTextField txtSupervisor;
+    private javax.swing.JTextField txtSupervisor1;
+    private javax.swing.JTextField txtTinNum;
+    private javax.swing.JTextField txtTinNum1;
     private javax.swing.JPanel updateEmployee;
     // End of variables declaration//GEN-END:variables
 }

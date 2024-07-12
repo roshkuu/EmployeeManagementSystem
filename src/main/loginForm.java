@@ -12,13 +12,23 @@ import java.sql.*;
  */
 public class loginForm extends javax.swing.JFrame {
     
+    
+    
     Connection conn = null;
     ResultSet rs = null;
     PreparedStatement ps = null;
 
     public loginForm() {
         initComponents();
-        conn = MyConnection.getConnection();
+        establishConnection();
+    }
+    
+    private void establishConnection(){
+        try{
+            conn = MyConnection.getConnection();
+        }catch (Exception ex){
+            System.out.println(ex.getMessage());
+        }
     }
 
     /**
@@ -228,7 +238,7 @@ public class loginForm extends javax.swing.JFrame {
                     String name = rs.getString(3);
                     String des = rs.getString(5);
                     JOptionPane.showMessageDialog(null,"Login Successful!");
-                    mainForm m = new mainForm(name,des);
+                    mainForm m = new mainForm(conn, name, des);
                     m.setVisible(true);
                     this.dispose();
                     
