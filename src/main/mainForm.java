@@ -4,6 +4,7 @@
  */
 package main;
 
+
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
@@ -11,8 +12,6 @@ import javax.swing.JPanel;
 import java.sql.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import static main.mainForm.DateValidator.validateDate;
 
 /**
@@ -34,6 +33,7 @@ public class mainForm extends javax.swing.JFrame {
         }
     }
     
+    
     private static final String DB_URL = "jdbc:mysql://localhost:3306/employee_database_mgt";
     
     Connection conn = null;
@@ -46,6 +46,7 @@ public class mainForm extends javax.swing.JFrame {
         initComponents();
         this.conn = conn; // Assign the passed connection
     }
+    
     
     public mainForm() {  // New constructor without arguments
          initComponents();
@@ -257,6 +258,47 @@ public class mainForm extends javax.swing.JFrame {
         btnGoBack2 = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         txtSemiMonthlyRate2 = new javax.swing.JTextField();
+        p1_CalcSalaryPane = new javax.swing.JPanel();
+        header3 = new javax.swing.JPanel();
+        jLabel99 = new javax.swing.JLabel();
+        jLabel100 = new javax.swing.JLabel();
+        jLabel101 = new javax.swing.JLabel();
+        jLabel102 = new javax.swing.JLabel();
+        jLabel112 = new javax.swing.JLabel();
+        jLabel113 = new javax.swing.JLabel();
+        jLabel114 = new javax.swing.JLabel();
+        jLabel115 = new javax.swing.JLabel();
+        jLabel116 = new javax.swing.JLabel();
+        txtClothingAllowance3 = new javax.swing.JTextField();
+        txtFName3 = new javax.swing.JTextField();
+        txtLName3 = new javax.swing.JTextField();
+        txtSearch2 = new javax.swing.JTextField();
+        txtSalaryPeriod = new javax.swing.JTextField();
+        txtPhoneAllowance3 = new javax.swing.JTextField();
+        txtGrossSalary = new javax.swing.JTextField();
+        btnGoBack3 = new javax.swing.JButton();
+        btnCalcSalary = new javax.swing.JButton();
+        txtRiceSubsidy3 = new javax.swing.JTextField();
+        jCalendar1 = new com.toedter.calendar.JCalendar();
+        jCalendar2 = new com.toedter.calendar.JCalendar();
+        jLabel120 = new javax.swing.JLabel();
+        jLabel121 = new javax.swing.JLabel();
+        jLabel122 = new javax.swing.JLabel();
+        jLabel117 = new javax.swing.JLabel();
+        txtPhilhealthDeduc = new javax.swing.JTextField();
+        txtSSSDeduc = new javax.swing.JTextField();
+        jLabel123 = new javax.swing.JLabel();
+        jLabel124 = new javax.swing.JLabel();
+        jLabel125 = new javax.swing.JLabel();
+        txtPagibigDeduc = new javax.swing.JTextField();
+        txtBasicSalary3 = new javax.swing.JTextField();
+        jLabel126 = new javax.swing.JLabel();
+        txtWithholdingDeduc = new javax.swing.JTextField();
+        txtTotalDeduc = new javax.swing.JTextField();
+        jLabel127 = new javax.swing.JLabel();
+        txtNetSalary = new javax.swing.JTextField();
+        jLabel128 = new javax.swing.JLabel();
+        jLabel129 = new javax.swing.JLabel();
         p2 = new javax.swing.JPanel();
         p3 = new javax.swing.JPanel();
         p4 = new javax.swing.JPanel();
@@ -693,7 +735,7 @@ public class mainForm extends javax.swing.JFrame {
 
         jLabel23.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(153, 0, 0));
-        jLabel23.setText("Employee Report");
+        jLabel23.setText("Leave  Application");
 
         javax.swing.GroupLayout reportEmployeeLayout = new javax.swing.GroupLayout(reportEmployee);
         reportEmployee.setLayout(reportEmployeeLayout);
@@ -701,13 +743,12 @@ public class mainForm extends javax.swing.JFrame {
             reportEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(reportEmployeeLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(reportEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, reportEmployeeLayout.createSequentialGroup()
-                        .addComponent(jLabel22)
-                        .addGap(52, 52, 52))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, reportEmployeeLayout.createSequentialGroup()
-                        .addComponent(jLabel23)
-                        .addGap(22, 22, 22))))
+                .addComponent(jLabel22)
+                .addGap(52, 52, 52))
+            .addGroup(reportEmployeeLayout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(jLabel23)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         reportEmployeeLayout.setVerticalGroup(
             reportEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -785,6 +826,11 @@ public class mainForm extends javax.swing.JFrame {
         calculateSalary.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 3, 3, new java.awt.Color(153, 153, 153)));
         calculateSalary.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         calculateSalary.setPreferredSize(new java.awt.Dimension(170, 120));
+        calculateSalary.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                calculateSalaryMouseClicked(evt);
+            }
+        });
 
         jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/calculate_salary_icon.png"))); // NOI18N
 
@@ -1504,6 +1550,216 @@ public class mainForm extends javax.swing.JFrame {
 
         centrePanel.add(p1_DeletePane, "card7");
 
+        p1_CalcSalaryPane.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        header3.setBackground(new java.awt.Color(0, 0, 104));
+        header3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel99.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel99.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel99.setText("Calculate Salary");
+        header3.add(jLabel99, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 5, 160, -1));
+
+        p1_CalcSalaryPane.add(header3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 769, -1));
+
+        jLabel100.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel100.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel100.setText("Employee Number :");
+        p1_CalcSalaryPane.add(jLabel100, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
+
+        jLabel101.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel101.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel101.setText("Last Name : ");
+        p1_CalcSalaryPane.add(jLabel101, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
+
+        jLabel102.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel102.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel102.setText("First Name : ");
+        p1_CalcSalaryPane.add(jLabel102, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 100, -1, -1));
+
+        jLabel112.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel112.setText("FROM");
+        p1_CalcSalaryPane.add(jLabel112, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 170, 50, -1));
+
+        jLabel113.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel113.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel113.setText("Gross Salary :");
+        p1_CalcSalaryPane.add(jLabel113, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 170, -1, -1));
+
+        jLabel114.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel114.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel114.setText("Phone Allowance : ");
+        p1_CalcSalaryPane.add(jLabel114, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 120, -1, -1));
+
+        jLabel115.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel115.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel115.setText("Basic Salary :  ");
+        p1_CalcSalaryPane.add(jLabel115, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 70, -1, -1));
+
+        jLabel116.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel116.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel116.setText("Rice Subsidy : ");
+        p1_CalcSalaryPane.add(jLabel116, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 170, -1, -1));
+
+        txtClothingAllowance3.setEditable(false);
+        txtClothingAllowance3.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 2, 1, new java.awt.Color(153, 153, 153)));
+        p1_CalcSalaryPane.add(txtClothingAllowance3, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 140, 104, -1));
+
+        txtFName3.setEditable(false);
+        txtFName3.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 2, 1, new java.awt.Color(153, 153, 153)));
+        p1_CalcSalaryPane.add(txtFName3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 120, 140, -1));
+
+        txtLName3.setEditable(false);
+        txtLName3.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 2, 1, new java.awt.Color(153, 153, 153)));
+        p1_CalcSalaryPane.add(txtLName3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 140, -1));
+
+        txtSearch2.setForeground(new java.awt.Color(153, 153, 153));
+        txtSearch2.setText("            Enter Employee Number to Search");
+        txtSearch2.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 2, 1, new java.awt.Color(153, 153, 153)));
+        txtSearch2.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtSearch2FocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtSearch2FocusLost(evt);
+            }
+        });
+        txtSearch2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtSearch2KeyPressed(evt);
+            }
+        });
+        p1_CalcSalaryPane.add(txtSearch2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 270, -1));
+
+        txtSalaryPeriod.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 2, 1, new java.awt.Color(153, 153, 153)));
+        p1_CalcSalaryPane.add(txtSalaryPeriod, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 90, 104, -1));
+
+        txtPhoneAllowance3.setEditable(false);
+        txtPhoneAllowance3.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 2, 1, new java.awt.Color(153, 153, 153)));
+        p1_CalcSalaryPane.add(txtPhoneAllowance3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 140, 104, -1));
+
+        txtGrossSalary.setEditable(false);
+        txtGrossSalary.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 2, 1, new java.awt.Color(153, 153, 153)));
+        p1_CalcSalaryPane.add(txtGrossSalary, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 190, 104, -1));
+
+        btnGoBack3.setBackground(new java.awt.Color(255, 0, 51));
+        btnGoBack3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnGoBack3.setForeground(new java.awt.Color(255, 255, 255));
+        btnGoBack3.setText("Go Back");
+        btnGoBack3.setBorderPainted(false);
+        btnGoBack3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnGoBack3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGoBack3ActionPerformed(evt);
+            }
+        });
+        p1_CalcSalaryPane.add(btnGoBack3, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 500, 140, 50));
+
+        btnCalcSalary.setBackground(new java.awt.Color(0, 0, 102));
+        btnCalcSalary.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnCalcSalary.setForeground(new java.awt.Color(255, 255, 255));
+        btnCalcSalary.setText("Calculate Salary");
+        btnCalcSalary.setBorderPainted(false);
+        btnCalcSalary.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCalcSalary.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCalcSalaryActionPerformed(evt);
+            }
+        });
+        btnCalcSalary.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnCalcSalaryKeyPressed(evt);
+            }
+        });
+        p1_CalcSalaryPane.add(btnCalcSalary, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 500, 160, 50));
+
+        txtRiceSubsidy3.setEditable(false);
+        txtRiceSubsidy3.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 2, 1, new java.awt.Color(153, 153, 153)));
+        p1_CalcSalaryPane.add(txtRiceSubsidy3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 190, 100, -1));
+        p1_CalcSalaryPane.add(jCalendar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, 200, 160));
+        p1_CalcSalaryPane.add(jCalendar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 410, -1, -1));
+
+        jLabel120.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel120.setText("TO");
+        p1_CalcSalaryPane.add(jLabel120, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 380, 20, 20));
+
+        jLabel121.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel121.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel121.setText("Salary Period :");
+        p1_CalcSalaryPane.add(jLabel121, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 70, -1, -1));
+
+        jLabel122.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel122.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel122.setText("SSS : ");
+        p1_CalcSalaryPane.add(jLabel122, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 260, -1, -1));
+
+        jLabel117.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel117.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel117.setText("Philhealth :");
+        p1_CalcSalaryPane.add(jLabel117, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 260, -1, -1));
+
+        txtPhilhealthDeduc.setEditable(false);
+        txtPhilhealthDeduc.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 2, 1, new java.awt.Color(153, 153, 153)));
+        p1_CalcSalaryPane.add(txtPhilhealthDeduc, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 280, 104, -1));
+
+        txtSSSDeduc.setEditable(false);
+        txtSSSDeduc.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 2, 1, new java.awt.Color(153, 153, 153)));
+        p1_CalcSalaryPane.add(txtSSSDeduc, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 280, 104, -1));
+
+        jLabel123.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel123.setText("Earnings ");
+        p1_CalcSalaryPane.add(jLabel123, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 40, -1, -1));
+
+        jLabel124.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel124.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel124.setText("PAGIBIG :");
+        p1_CalcSalaryPane.add(jLabel124, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 310, -1, -1));
+
+        jLabel125.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel125.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel125.setText("Total Deduction :");
+        p1_CalcSalaryPane.add(jLabel125, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 370, -1, -1));
+
+        txtPagibigDeduc.setEditable(false);
+        txtPagibigDeduc.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 2, 1, new java.awt.Color(153, 153, 153)));
+        p1_CalcSalaryPane.add(txtPagibigDeduc, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 330, 104, -1));
+
+        txtBasicSalary3.setEditable(false);
+        txtBasicSalary3.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 2, 1, new java.awt.Color(153, 153, 153)));
+        p1_CalcSalaryPane.add(txtBasicSalary3, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 90, 104, -1));
+
+        jLabel126.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel126.setText("Deductions");
+        p1_CalcSalaryPane.add(jLabel126, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 230, -1, -1));
+
+        txtWithholdingDeduc.setEditable(false);
+        txtWithholdingDeduc.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 2, 1, new java.awt.Color(153, 153, 153)));
+        p1_CalcSalaryPane.add(txtWithholdingDeduc, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 330, 104, -1));
+
+        txtTotalDeduc.setEditable(false);
+        txtTotalDeduc.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 2, 1, new java.awt.Color(153, 153, 153)));
+        p1_CalcSalaryPane.add(txtTotalDeduc, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 390, 110, -1));
+
+        jLabel127.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel127.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel127.setText("Clothing Allowance : ");
+        p1_CalcSalaryPane.add(jLabel127, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 120, -1, -1));
+
+        txtNetSalary.setEditable(false);
+        txtNetSalary.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 2, 1, new java.awt.Color(153, 153, 153)));
+        p1_CalcSalaryPane.add(txtNetSalary, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 460, 110, -1));
+
+        jLabel128.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel128.setText("Net Salary");
+        p1_CalcSalaryPane.add(jLabel128, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 430, -1, -1));
+
+        jLabel129.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel129.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel129.setText("Withholding tax : ");
+        p1_CalcSalaryPane.add(jLabel129, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 310, -1, -1));
+
+        centrePanel.add(p1_CalcSalaryPane, "card7");
+
         javax.swing.GroupLayout p2Layout = new javax.swing.GroupLayout(p2);
         p2.setLayout(p2Layout);
         p2Layout.setHorizontalGroup(
@@ -1616,6 +1872,44 @@ public class mainForm extends javax.swing.JFrame {
         txtSemiMonthlyRate1.setText("");
         txtHourlyRate1.setText("");
         
+        //reset for delete pane
+        
+        txtSearch1.setText("            Enter Employee Number to Search");
+        txtLName2.setText("");
+        txtFName2.setText("");
+        txtBday2.setText("");
+        txtAddress2.setText("");
+        txtPhoneNum2.setText("");
+        txtSSSNum2.setText("");
+        txtPhilhealthNum2.setText("");
+        txtTinNum2.setText("");
+        txtPagibigNum2.setText("");
+        txtStatus2.setText("");
+        txtPosition2.setText("");
+        txtSupervisor2.setText("");
+        txtBasicSalary2.setText("");
+        txtRiceSubsidy2.setText("");
+        txtPhoneAllowance2.setText("");
+        txtClothingAllowance2.setText("");
+        txtSemiMonthlyRate2.setText("");
+        txtHourlyRate2.setText("");
+        
+        
+        //reset for calculate salary pane
+        txtSearch2.setText("            Enter Employee Number to Search");
+        txtLName3.setText("");
+        txtFName3.setText("");
+        txtBasicSalary3.setText("");
+        txtRiceSubsidy3.setText("");
+        txtPhoneAllowance3.setText("");
+        txtClothingAllowance3.setText("");
+        txtGrossSalary.setText("");
+        txtPhilhealthDeduc.setText("");
+        txtSSSDeduc.setText("");
+        txtPagibigDeduc.setText("");
+        txtWithholdingDeduc.setText("");
+        txtTotalDeduc.setText("");
+        txtNetSalary.setText("");
     }
     
     private void onClick(JPanel panel){
@@ -2268,6 +2562,182 @@ public class mainForm extends javax.swing.JFrame {
         }    
     }//GEN-LAST:event_btnDeleteActionPerformed
 
+    private void txtSearch2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSearch2FocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSearch2FocusGained
+
+    private void txtSearch2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSearch2FocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSearch2FocusLost
+
+    private void txtSearch2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearch2KeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            try {
+                String sql = "SELECT `EmployeeNum`, `LastName`, `FirstName`, `Birthday`, `Address`, `PhoneNumber`, `SSS`, `Philhealth`, `TIN`, `Pagibig`, `Status`, `Position`, `ImmediateSupervisor`, `BasicSalary`, `RiceSubsidy`, `PhoneAllowance`, `ClothingAllowance`, `GrossSemiMonthlyRate`, `HourlyRate` FROM `motorph_employee_data___employee_details` WHERE EmployeeNum = ?";
+                ps = conn.prepareStatement(sql);
+                ps.setString(1,txtSearch2.getText());
+
+                // Execute the query and get the results
+                rs = ps.executeQuery();
+
+                if (rs.next()) {
+                    // Retrieve data based on actual column names and data types
+                    String lastName = rs.getString("LastName");
+                    String firstName = rs.getString("FirstName");
+                    
+                    String basicSalary = rs.getString("BasicSalary");
+                    double basicSalaryDouble = 0.0;
+                    if (basicSalary != null) { // Check for null values
+                      try {
+                        basicSalaryDouble = Double.parseDouble(basicSalary);
+                        txtBasicSalary3.setText(String.valueOf(basicSalaryDouble));
+                      } catch (NumberFormatException e) {
+                        // Handle invalid basic salary format (e.g., display error message)
+                      }
+                    }
+
+                    // Assuming RiceSubsidy is int(6)
+                    double riceSubsidy;
+                    try {
+                      riceSubsidy = rs.getDouble("RiceSubsidy");
+                      txtRiceSubsidy3.setText(String.valueOf(riceSubsidy));
+                    } catch (SQLException e) {
+                      // Handle potential exception
+                      riceSubsidy = 0;
+                    }
+
+                    double phoneAllowance = 0.0;  // Assuming int for int(5)
+                    try {
+                      phoneAllowance = rs.getDouble("PhoneAllowance");
+                      txtPhoneAllowance3.setText(String.valueOf(phoneAllowance));
+                    } catch (SQLException e) {
+                      // Handle potential SQLException (e.g., if the value cannot be converted to int)
+                    }
+
+                    double clothingAllowance = 0.0;  // Assuming int for int(5)
+                    try {
+                      clothingAllowance = rs.getDouble("ClothingAllowance");
+                      txtClothingAllowance3.setText(String.valueOf(clothingAllowance));
+                    } catch (SQLException e) {
+                      // Handle potential SQLException (e.g., if the value cannot be converted to int)
+                    }
+                    
+                    // Calculate and update gross salary
+                    double grossSalary = basicSalaryDouble + riceSubsidy + phoneAllowance + clothingAllowance;
+                    txtGrossSalary.setText(String.valueOf(grossSalary));
+
+                    // Create WithholdingTaxDeduction instance and calculate withholding tax
+                    WithholdingTaxDeduction taxDeduction = new WithholdingTaxDeduction();
+                    double withholdingTax = taxDeduction.calculateDeduction(grossSalary);
+                    txtWithholdingDeduc.setText(String.valueOf(withholdingTax));
+
+                    // Calculate and update Pag-IBIG deduction
+                    PagibigDeduction pagibigDeduction = new PagibigDeduction();
+                    double pagibigDeductionValue = pagibigDeduction.calculateDeduction(grossSalary);
+                    txtPagibigDeduc.setText(String.valueOf(pagibigDeductionValue));
+
+                    // Calculate and update SSS deduction (assuming SSSDeduction class and method exist)
+                    SSSDeduction sssDeduction = new SSSDeduction();
+                    double sssDeductionValue;  // Declare without initialization to avoid potential null pointer exception
+                    if (sssDeduction != null) { // Check if SSSDeduction instance is not null
+                      sssDeductionValue = sssDeduction.calculateDeduction(grossSalary);
+                    } else {
+                      // Handle case where SSSDeduction might be null (optional)
+                      sssDeductionValue = 0.0; // Or set a default value
+                    }
+                    txtSSSDeduc.setText(String.valueOf(sssDeductionValue));
+
+                    // Calculate and update PhilHealth deduction (assuming PhilHealthDeduction class and method exist)
+                    
+                    PhilHealthDeduction philhealthDeduction = new PhilHealthDeduction();
+                    double philhealthDeductionValue;  // Declare without initialization
+                    if (philhealthDeduction != null) { // Check if PhilHealthDeduction instance is not null
+                      philhealthDeductionValue = philhealthDeduction.calculateDeduction(grossSalary);
+                    } else {
+                      // Handle case where PhilHealthDeduction might be null (optional)
+                      philhealthDeductionValue = 0.0; // Or set a default value
+                    }
+                    txtPhilhealthDeduc.setText(String.valueOf(philhealthDeductionValue));
+
+                    // Calculate total deduction (assuming all deduction values are now double)
+                    double totalDeduction = sssDeductionValue + philhealthDeductionValue + withholdingTax + pagibigDeductionValue;
+                    txtTotalDeduc.setText(String.valueOf(totalDeduction));
+                    
+
+                    // Update your form UI elements with retrieved data
+                    txtLName3.setText(lastName);
+                    txtFName3.setText(firstName);
+        
+                } else {
+                  JOptionPane.showMessageDialog(this, "Employee not found!");
+                }
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(this, "Error searching employee: " + e.getMessage());
+      
+    } finally {
+      if (rs != null) {
+          try {
+              rs.close();
+          } catch (Exception ex) {
+              JOptionPane.showMessageDialog(null,ex);
+          }
+      }
+      if (ps != null) {
+          try {
+              ps.close();
+          } catch (Exception ex) {
+              JOptionPane.showMessageDialog(null,ex);
+          }
+      }
+    }
+  }
+    }//GEN-LAST:event_txtSearch2KeyPressed
+
+    private void btnGoBack3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGoBack3ActionPerformed
+        // TODO add your handling code here:
+        p1.setVisible(true);
+        p1_AddPane.setVisible(false);
+        p1_UpdatePane.setVisible(false);
+        p1_DeletePane.setVisible(false);
+        p1_CalcSalaryPane.setVisible(false);
+        p2.setVisible(false);
+        p3.setVisible(false);
+        p4.setVisible(false);
+        p5.setVisible(false);
+        
+        reset();
+    }//GEN-LAST:event_btnGoBack3ActionPerformed
+
+    private void btnCalcSalaryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcSalaryActionPerformed
+        // TODO add your handling code here:
+        double grossSalary = Double.parseDouble(txtGrossSalary.getText());
+        double totalDeduction = Double.parseDouble(txtTotalDeduc.getText());
+
+        double netSalary = grossSalary - totalDeduction;
+        String netSalaryString = String.valueOf(netSalary);
+
+        txtNetSalary.setText(netSalaryString);
+        
+    }//GEN-LAST:event_btnCalcSalaryActionPerformed
+
+    private void btnCalcSalaryKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnCalcSalaryKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCalcSalaryKeyPressed
+
+    private void calculateSalaryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_calculateSalaryMouseClicked
+        // TODO add your handling code here:
+        p1.setVisible(false);
+        p1_AddPane.setVisible(false);
+        p1_UpdatePane.setVisible(false);
+        p1_DeletePane.setVisible(false);
+        p1_CalcSalaryPane.setVisible(true);
+        p2.setVisible(false);
+        p3.setVisible(false);
+        p4.setVisible(false);
+        p5.setVisible(false);
+    }//GEN-LAST:event_calculateSalaryMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -2296,10 +2766,8 @@ public class mainForm extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new mainForm().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new mainForm().setVisible(true);
         });
     }
 
@@ -2313,10 +2781,12 @@ public class mainForm extends javax.swing.JFrame {
     private javax.swing.JPanel btn5;
     private javax.swing.JPanel btn6;
     private javax.swing.JButton btnAddEmployee;
+    private javax.swing.JButton btnCalcSalary;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnGoBack;
     private javax.swing.JButton btnGoBack1;
     private javax.swing.JButton btnGoBack2;
+    private javax.swing.JButton btnGoBack3;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JPanel calculateSalary;
     private javax.swing.JPanel centrePanel;
@@ -2326,11 +2796,33 @@ public class mainForm extends javax.swing.JFrame {
     private javax.swing.JPanel header;
     private javax.swing.JPanel header1;
     private javax.swing.JPanel header2;
+    private javax.swing.JPanel header3;
     private javax.swing.JPanel headerPanel;
+    private com.toedter.calendar.JCalendar jCalendar1;
+    private com.toedter.calendar.JCalendar jCalendar2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel100;
+    private javax.swing.JLabel jLabel101;
+    private javax.swing.JLabel jLabel102;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel112;
+    private javax.swing.JLabel jLabel113;
+    private javax.swing.JLabel jLabel114;
+    private javax.swing.JLabel jLabel115;
+    private javax.swing.JLabel jLabel116;
+    private javax.swing.JLabel jLabel117;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel120;
+    private javax.swing.JLabel jLabel121;
+    private javax.swing.JLabel jLabel122;
+    private javax.swing.JLabel jLabel123;
+    private javax.swing.JLabel jLabel124;
+    private javax.swing.JLabel jLabel125;
+    private javax.swing.JLabel jLabel126;
+    private javax.swing.JLabel jLabel127;
+    private javax.swing.JLabel jLabel128;
+    private javax.swing.JLabel jLabel129;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
@@ -2425,12 +2917,14 @@ public class mainForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel96;
     private javax.swing.JLabel jLabel97;
     private javax.swing.JLabel jLabel98;
+    private javax.swing.JLabel jLabel99;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblEmpDesignation;
     private javax.swing.JLabel lblEmpName;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JPanel p1;
     private javax.swing.JPanel p1_AddPane;
+    private javax.swing.JPanel p1_CalcSalaryPane;
     private javax.swing.JPanel p1_DeletePane;
     private javax.swing.JPanel p1_UpdatePane;
     private javax.swing.JPanel p2;
@@ -2445,31 +2939,40 @@ public class mainForm extends javax.swing.JFrame {
     private javax.swing.JTextField txtBasicSalary;
     private javax.swing.JTextField txtBasicSalary1;
     private javax.swing.JTextField txtBasicSalary2;
+    private javax.swing.JTextField txtBasicSalary3;
     private javax.swing.JTextField txtBday;
     private javax.swing.JTextField txtBday1;
     private javax.swing.JTextField txtBday2;
     private javax.swing.JTextField txtClothingAllowance;
     private javax.swing.JTextField txtClothingAllowance1;
     private javax.swing.JTextField txtClothingAllowance2;
+    private javax.swing.JTextField txtClothingAllowance3;
     private javax.swing.JTextField txtEmpNum;
     private javax.swing.JTextField txtFName;
     private javax.swing.JTextField txtFName1;
     private javax.swing.JTextField txtFName2;
+    private javax.swing.JTextField txtFName3;
+    private javax.swing.JTextField txtGrossSalary;
     private javax.swing.JTextField txtHourlyRate;
     private javax.swing.JTextField txtHourlyRate1;
     private javax.swing.JTextField txtHourlyRate2;
     private javax.swing.JTextField txtLName;
     private javax.swing.JTextField txtLName1;
     private javax.swing.JTextField txtLName2;
+    private javax.swing.JTextField txtLName3;
+    private javax.swing.JTextField txtNetSalary;
+    private javax.swing.JTextField txtPagibigDeduc;
     private javax.swing.JTextField txtPagibigNum;
     private javax.swing.JTextField txtPagibigNum1;
     private javax.swing.JTextField txtPagibigNum2;
+    private javax.swing.JTextField txtPhilhealthDeduc;
     private javax.swing.JTextField txtPhilhealthNum;
     private javax.swing.JTextField txtPhilhealthNum1;
     private javax.swing.JTextField txtPhilhealthNum2;
     private javax.swing.JTextField txtPhoneAllowance;
     private javax.swing.JTextField txtPhoneAllowance1;
     private javax.swing.JTextField txtPhoneAllowance2;
+    private javax.swing.JTextField txtPhoneAllowance3;
     private javax.swing.JTextField txtPhoneNum;
     private javax.swing.JTextField txtPhoneNum1;
     private javax.swing.JTextField txtPhoneNum2;
@@ -2479,11 +2982,15 @@ public class mainForm extends javax.swing.JFrame {
     private javax.swing.JTextField txtRiceSubsidy;
     private javax.swing.JTextField txtRiceSubsidy1;
     private javax.swing.JTextField txtRiceSubsidy2;
+    private javax.swing.JTextField txtRiceSubsidy3;
+    private javax.swing.JTextField txtSSSDeduc;
     private javax.swing.JTextField txtSSSNum;
     private javax.swing.JTextField txtSSSNum1;
     private javax.swing.JTextField txtSSSNum2;
+    private javax.swing.JTextField txtSalaryPeriod;
     private javax.swing.JTextField txtSearch;
     private javax.swing.JTextField txtSearch1;
+    private javax.swing.JTextField txtSearch2;
     private javax.swing.JTextField txtSemiMonthlyRate;
     private javax.swing.JTextField txtSemiMonthlyRate1;
     private javax.swing.JTextField txtSemiMonthlyRate2;
@@ -2496,6 +3003,8 @@ public class mainForm extends javax.swing.JFrame {
     private javax.swing.JTextField txtTinNum;
     private javax.swing.JTextField txtTinNum1;
     private javax.swing.JTextField txtTinNum2;
+    private javax.swing.JTextField txtTotalDeduc;
+    private javax.swing.JTextField txtWithholdingDeduc;
     private javax.swing.JPanel updateEmployee;
     // End of variables declaration//GEN-END:variables
 }
